@@ -63,3 +63,9 @@ Our game only require **arrow key** and **R** on your keyboard
 https://github.com/user-attachments/assets/f893c737-4c37-44da-aff3-facafc72dc98
 
 
+### Game rule
+- Score point will be given if arrow clicked at correct timing
+- Click wrong key, missed arrow and too early will count as Misses
+- Game over if get 5 Misses
+
+
