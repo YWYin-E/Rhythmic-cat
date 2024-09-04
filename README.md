@@ -133,12 +133,33 @@ Open **Visual Studio Code**
 __To get Visual Studio Code, follow this URL:__
 
 https://code.visualstudio.com/download
+
+
+
 Open cat_saying_meow.py in Visual Studio Code
+
+
+
 Install python in Visual Studio Code
+
+
+
 choose **3.12.4 ('cat':conda)** on the right below conner 
+
+
+
 <img width="339" alt="image" src="https://github.com/user-attachments/assets/ced53be9-8a87-4c1b-8c28-35418d4cf235">
+
+
+
 <img width="472" alt="image" src="https://github.com/user-attachments/assets/5cab8533-32af-4232-8d3d-06a8ea8a8eb4">
+
+
+
 Lastly, click run python filr button on the top right conner
+
+
+
 ![image](https://github.com/user-attachments/assets/555722f9-3553-44a8-94ef-da04af84dba4)
 
 
