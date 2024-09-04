@@ -3,7 +3,7 @@
 ## Members
 - Leader/designer: Yu Wai Yin
 - Coder: Sivapravin
-- Presenter/thinker: Kabeer
+- Presenter/thinker: Kabeerjeet Singh
 
 ## How to install our game
 
@@ -23,9 +23,9 @@ Open **Anaconda Powershell Prompt** or **Miniconda Powershell Prompt** (choose o
 
 __To get Anaconda/Miniconda, follow this URL:__
 
-For PC that have a lot storage(use Anaconda): https://www.anaconda.com/download
+For a PC/Laptop that has huge storage(Use Anaconda): https://www.anaconda.com/download
 
-For Pc that have a little storage(Use Miniconda): https://docs.anaconda.com/miniconda/
+For a PC/Laptop that has little storage(Use Miniconda): https://docs.anaconda.com/miniconda/
 
 
 
@@ -40,7 +40,7 @@ cd " paste the path "
 python cat_saying_meow.py
 ```
 
-If they ask (y/n), just type **y** and **ENTER**
+If they ask (y/n), type **y** and **ENTER**
 
 
 
@@ -55,8 +55,8 @@ You can play our game now!
 
 ![image](https://github.com/user-attachments/assets/c82cfcab-8625-4027-9e41-e7ee147ebe17)
 
-### Control key
-Our game only require **arrow key** and **R** on your keyboard
+### Control keys
+Our game requires only **arrow keys** and **R** on your keyboard.
 
 
 
@@ -64,8 +64,7 @@ https://github.com/user-attachments/assets/f893c737-4c37-44da-aff3-facafc72dc98
 
 
 ### Game rule
-- Score point will be given if arrow clicked at correct timing
-- Click wrong key, missed arrow and too early will count as Misses
-- Game over if get 5 Misses
-
+- Score of 1 point will be given if the cat arrow is clicked at correct timing.
+- If clicked the arrow key wrongly, it will be considered or counted as "Misses".
+- The game will be over when one "Misses" 5 times. 
 
