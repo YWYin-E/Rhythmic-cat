@@ -7,7 +7,7 @@ pygame.init()
 # Screen dimensions
 WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Rhythm Arrow Game")
+pygame.display.set_caption("Rhythmic-cat")
 
 # Colors and fonts
 WHITE = (255, 255, 255)
@@ -32,12 +32,13 @@ arrow_left = pygame.image.load('left.png')
 arrow_right = pygame.image.load('right.png')
 
 arrow_images = [arrow_up, arrow_down, arrow_left, arrow_right]
-arrow_positions = [(400, 0), (560, 0), (240, 0), (80, 0)]
+arrow_positions = [(430, 0), (630, 0), (230, 0), (30, 0)]
 arrow_keys = [pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT]
 
 # Background images
-main_menu_bg = pygame.image.load('background.png')  # Background for the main menu
-game_bg = pygame.image.load('background.jpg')  # Background for the game
+main_menu_bg = pygame.image.load('background_main.png')  # Background for the main menu
+game_bg = pygame.image.load('background_game.jpg')  # Background for the game
+song_select_bg = pygame.image.load('background_selection.png')
 
 # Load border images for each arrow
 border_up = pygame.image.load('up1.png')
@@ -46,33 +47,39 @@ border_left = pygame.image.load('left1.png')
 border_right = pygame.image.load('right1.png')
 
 border_positions = {
-    'up': (400, HEIGHT - 150),
-    'down': (560, HEIGHT - 150),
-    'left': (240, HEIGHT - 150),
-    'right': (80, HEIGHT - 150)
+    'up': (430, HEIGHT - 150),
+    'down': (630, HEIGHT - 150),
+    'left': (230, HEIGHT - 150),
+    'right': (30, HEIGHT - 150)
 }
 
 # Line positions between columns
 line_positions = [
-    (235, 0, 235, HEIGHT),  # Line between left and up arrows
-    (410, 0, 410, HEIGHT),  # Line between up and down arrows
-    (565, 0, 565, HEIGHT),  # Line between down and right arrows
+    (200, 0, 200, HEIGHT),  # Line between left and up arrows
+    (400, 0, 400, HEIGHT),  # Line between up and down arrows
+    (600, 0, 600, HEIGHT),  # Line between down and right arrows
 ]
 
 # Game variables
 arrows = []
-arrow_speed = 5
 score = 0
 misses = 0
-combo = 0  # Track the current combo
+combo = 0
 max_misses = 5
-spawn_rate = 1000  # milliseconds between spawns
 last_spawn_time = pygame.time.get_ticks()
-compliment = ""  # To store compliment messages
-compliment_timer = 0  # Timer to show compliments
-compliment_alpha = 255  # Alpha value for fading
+compliment = ""
+compliment_timer = 0
+compliment_alpha = 255
 current_song = 0
-songs = ["Song1.mp3", "Song2.mp3", "Song3.mp3"]  # List of song files
+songs = ["Song1.mp3", "Song2.mp3", "Song3.mp3"]
+bpms = [78, 85, 87]  # Example BPMs for the songs
+
+# Calculate seconds per beat for the current song
+seconds_per_beat = 60 / bpms[current_song]
+
+# Add the new variables
+n = 75  # Number of beats it takes for an arrow to reach the target
+arrow_speed = HEIGHT / (seconds_per_beat * n)  # Calculate arrow speed
 
 # Main menu buttons
 play_button_rect = pygame.Rect(WIDTH // 2 - 100, HEIGHT // 2 - 100, 200, 50)
@@ -82,12 +89,18 @@ def draw_text_centered(text, font, color, surface, rect):
     text_rect = text_surface.get_rect(center=rect.center)
     surface.blit(text_surface, text_rect)
 
+def draw_play_button():
+    # Load a play button image or design your play button
+    pygame.draw.rect(screen, WHITE, play_button_rect, border_radius=12)  # White button with rounded corners
+    pygame.draw.rect(screen, BLACK, play_button_rect, 4, border_radius=12)  # Black border
+    draw_text_centered("Play", BUTTON_FONT, BLACK, screen, play_button_rect)  # Text on the button
+
 def draw_main_menu():
     screen.blit(main_menu_bg, (0, 0))
-    draw_text_centered("Play", BUTTON_FONT, WHITE, screen, play_button_rect)
+    draw_play_button()
 
 def draw_songs_screen():
-    screen.fill(BLACK)
+    screen.blit(song_select_bg, (0, 0))  # Draw the song selection background image
     draw_text_centered("Select a Song", FONT, WHITE, screen, pygame.Rect(WIDTH // 2, 50, 0, 0))
     song_rects = []
     for i, song in enumerate(songs):
@@ -113,12 +126,11 @@ def reset_game():
     compliment_alpha = 255
 
 def game_loop():
-    global current_song, last_spawn_time, arrows, score, misses, combo, compliment, compliment_timer, compliment_alpha
+    global current_song, last_spawn_time, arrows, score, misses, combo, compliment, compliment_timer, compliment_alpha, main_menu
 
     pygame.mixer.music.load(songs[current_song])
     pygame.mixer.music.play(-1)
     
-    # Initialize game variables
     last_spawn_time = pygame.time.get_ticks()
     arrows = []
     score = 0
@@ -146,6 +158,7 @@ def game_loop():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+                main_menu = False  # Ensure that the game exits
             elif event.type == pygame.KEYDOWN:
                 for arrow in arrows:
                     if HEIGHT - 180 < arrow['y'] < HEIGHT - 110:
@@ -161,9 +174,10 @@ def game_loop():
                     misses += 1
                     combo = 0  # Reset combo on miss
 
-        # Spawn arrows
+        # Spawn arrows based on the beat
         current_time = pygame.time.get_ticks()
-        if current_time - last_spawn_time > spawn_rate:
+        time_since_last_spawn = current_time - last_spawn_time
+        if time_since_last_spawn > (seconds_per_beat * 1000):  # Convert to milliseconds
             spawn_arrow()
             last_spawn_time = current_time
 
@@ -202,26 +216,26 @@ def game_loop():
 
         # Check for game over
         if misses >= max_misses:
-            game_over_text = FONT.render("Game Over! Press R to Restart", True, RED)
-            screen.blit(game_over_text, (WIDTH // 2 - 200, HEIGHT // 2))
+            game_over_text = FONT.render("Game Over! Returning to Main Menu...", True, RED)
+            screen.blit(game_over_text, (WIDTH // 2 - 300, HEIGHT // 2))
             pygame.display.flip()
-
-            waiting = True
-            while waiting:
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        running = False
-                        waiting = False
-                    elif event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_r:
-                            reset_game()
-                            waiting = False
+            pygame.time.delay(2000)  # Delay for 2 seconds
+            running = False  # Exit the game loop and return to the main menu
 
         pygame.display.flip()
         pygame.time.delay(30)
 
-    pygame.quit()
+    pygame.mixer.music.stop()  # Stop the music before returning to the main menu
 
+def draw_play_button():
+    # Load a play button image or design your play button
+    pygame.draw.rect(screen, WHITE, play_button_rect, border_radius=12)  # White button with rounded corners
+    pygame.draw.rect(screen, BLACK, play_button_rect, 4, border_radius=12)  # Black border
+    draw_text_centered("Play", BUTTON_FONT, BLACK, screen, play_button_rect)  # Text on the button
+
+def draw_main_menu():
+    screen.blit(main_menu_bg, (0, 0))
+    draw_play_button()
 
 # Main loop
 main_menu = True
@@ -240,20 +254,19 @@ while main_menu:
                 show_songs = True
                 main_menu = False
 
-# Songs screen loop
-while show_songs:
-    song_rects = draw_songs_screen()
-    pygame.display.flip()
+    while show_songs:
+        song_rects = draw_songs_screen()
+        pygame.display.flip()
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            show_songs = False
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            mouse_pos = pygame.mouse.get_pos()
-            for i, song_rect in enumerate(song_rects):
-                if song_rect.collidepoint(mouse_pos):
-                    current_song = i
-                    show_songs = False
-                    game_loop()  # Start the game loop with the selected song
-
-pygame.quit()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                show_songs = False
+                main_menu = False  # Exit the game
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                for i, song_rect in enumerate(song_rects):
+                    if song_rect.collidepoint(mouse_pos):
+                        current_song = i
+                        show_songs = False
+                        game_loop()  # Start the game loop with the selected song
+                        main_menu = True  # Return to the main menu after the game loop
