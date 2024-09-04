@@ -11,7 +11,7 @@ Download the game by clicking this URL:
 https://github.com/YWYin-E/Rhythmic-cat/archive/refs/heads/main.zip
 
 Unzip the file
-find "cat_saying_meow.py" python file
+find "Rhythmic-cat" folder
 right click and copy as path
 
 
@@ -28,7 +28,8 @@ Please run the following command:
 conda create -n cat python=3.12.4
 conda activate cat
 conda install conda-forge::pygame
-python " paste the path "
+cd " paste the path "
+python cat_saying_meow.py
 ```
 
 If they ask (y/n), just type **y** and **ENTER**
