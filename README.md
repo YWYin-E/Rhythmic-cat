@@ -8,7 +8,7 @@
 ## How to install our game
 open **Anaconda Powershell Prompt** or **Miniconda Powershell Prompt**
 
-Please run the following command:
+Please run the following command one-by-one:
 ```
 conda create -n cat python=3.12.4
 conda activate cat
