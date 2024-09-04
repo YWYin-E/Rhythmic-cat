@@ -5,7 +5,7 @@ import random
 pygame.init()
 
 # Screen dimensions
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 1000, 1000
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Advanced Typing Game")
 
@@ -21,10 +21,10 @@ GREEN = (0, 255, 0)
 words = ["python", "pygame", "code", "keyboard", "mouse", "program", "computer", "developer", "bonus", "extra"]
 special_words = ["bonus", "extra"]
 word_speed = 2
-word_delay = 2000
+word_delay = 2500
 last_word_time = pygame.time.get_ticks()
 score = 0
-lives = 3
+lives = 10
 level = 1
 level_threshold = 10
 game_over = False
@@ -52,10 +52,10 @@ def add_word():
 def reset_game():
     global score, lives, level, word_speed, word_delay, game_over
     score = 0
-    lives = 3
+    lives = 10
     level = 1
     word_speed = 2
-    word_delay = 2000
+    word_delay = 2500
     game_over = False
     active_words.clear()
 
@@ -119,7 +119,7 @@ while True:
                 # Level up and increase difficulty at each checkpoint
                 if score >= level * level_threshold:
                     level += 1
-                    word_speed += 1  # Increase word speed
+                    word_speed += 0.5  # Increase word speed
                     word_delay = max(500, word_delay - 250)  # Increase word frequency (lower delay)
 
         # Render typed word
