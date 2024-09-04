@@ -156,7 +156,7 @@ choose **3.12.4 ('cat':conda)** on the right below corner
 
 
 
-Lastly, click run python filr button on the top right corner
+Lastly, click run python file button on the top right corner
 
 
 
