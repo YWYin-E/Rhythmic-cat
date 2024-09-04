@@ -72,7 +72,7 @@ compliment = ""  # To store compliment messages
 compliment_timer = 0  # Timer to show compliments
 compliment_alpha = 255  # Alpha value for fading
 current_song = 0
-songs = ["Cute Meow.mp3", "Blinding Lights by cat.mp3", "As it was by cat.mp3"]  # List of song files
+songs = ["Song1.mp3", "Song2.mp3", "Song3.mp3"]  # List of song files
 
 # Main menu buttons
 play_button_rect = pygame.Rect(WIDTH // 2 - 100, HEIGHT // 2 - 100, 200, 50)
