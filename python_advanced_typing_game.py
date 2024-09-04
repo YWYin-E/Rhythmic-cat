@@ -34,10 +34,12 @@ pygame.mixer.init()
 typing_sound = pygame.mixer.Sound("type_sound.wav")
 correct_sound = pygame.mixer.Sound("correct.wav")
 game_over_sound = pygame.mixer.Sound("game_over.wav")
+life_loss_sound = pygame.mixer.Sound("life_loss.wav")  # New life loss sound
 
 # Game word list
 active_words = []
 typed_word = ""
+typing_active = False  # New flag to track typing activity
 
 # Function to add a new word
 def add_word():
@@ -76,11 +78,23 @@ while True:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_BACKSPACE:
                     typed_word = typed_word[:-1]
+                    if typed_word == "":
+                        typing_sound.stop()
+                        typing_active = False
                 elif event.key == pygame.K_RETURN:
                     typed_word = ""
+                    typing_sound.stop()
+                    typing_active = False
                 else:
-                    typing_sound.play()
+                    if not typing_active:  # Play sound when typing starts
+                        typing_sound.play(loops=-1)
+                        typing_active = True
                     typed_word += event.unicode
+
+            elif event.type == pygame.KEYUP:
+                if typing_active and not typed_word:
+                    typing_sound.stop()
+                    typing_active = False
 
         # Update words position
         for word_obj in active_words:
@@ -91,6 +105,9 @@ while True:
             # Check if the typed word matches any word
             if typed_word == word_obj["word"]:
                 correct_sound.play()
+                typing_sound.stop()  # Stop sound after correct word typed
+                typing_active = False
+
                 if word_obj["word"] in special_words:
                     score += 5  # Bonus points for special words
                 else:
@@ -99,11 +116,11 @@ while True:
                 active_words.remove(word_obj)
                 typed_word = ""
 
-                # Level up
+                # Level up and increase difficulty at each checkpoint
                 if score >= level * level_threshold:
                     level += 1
-                    word_speed += 1
-                    word_delay = max(1000, word_delay - 200)
+                    word_speed += 1  # Increase word speed
+                    word_delay = max(500, word_delay - 250)  # Increase word frequency (lower delay)
 
         # Render typed word
         typed_text = FONT.render(typed_word, True, RED)
@@ -113,6 +130,7 @@ while True:
         for word_obj in active_words:
             if word_obj["y"] > HEIGHT:
                 lives -= 1
+                life_loss_sound.play()  # Play sound on life loss
                 active_words.remove(word_obj)
                 if lives == 0:
                     game_over_sound.play()
@@ -140,4 +158,3 @@ while True:
 
     pygame.display.flip()
     pygame.time.delay(30)
-
