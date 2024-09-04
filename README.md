@@ -64,8 +64,7 @@ https://github.com/user-attachments/assets/f893c737-4c37-44da-aff3-facafc72dc98
 
 
 ### Game rule
-- Score point will be given if arrow clicked at correct timing
-- Click wrong key, missed arrow and too early will count as Misses
-- Game over if get 5 Misses
-
+- Score of 1 point will be given if the cat arrow is clicked at correct timing.
+- If clicked the arrow key wrongly, it will be considered or counted as "Misses".
+- The game will be over when one "Misses" 5 times. 
 
