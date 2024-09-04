@@ -25,7 +25,7 @@ arrow_left = pygame.image.load('arrow_left.png')
 arrow_right = pygame.image.load('arrow_right.png')
 
 arrow_images = [arrow_up, arrow_down, arrow_left, arrow_right]
-arrow_positions = [(400, 0), (560, 0), (240, 0), (80, 0)]
+arrow_positions = [(430, 0), (630, 0), (230, 0), (30, 0)]
 arrow_keys = [pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT]
 
 # Background image
@@ -39,10 +39,10 @@ border_right = pygame.image.load('border_right.png')
 
 # Positions for the border images (adjust as needed to match arrow positions)
 border_positions = {
-    'up': (400, HEIGHT - 150),
-    'down': (560, HEIGHT - 150),
-    'left': (240, HEIGHT - 150),
-    'right': (80, HEIGHT - 150)
+    'up': (430, HEIGHT - 150),
+    'down': (630, HEIGHT - 150),
+    'left': (230, HEIGHT - 150),
+    'right': (30, HEIGHT - 150)
 }
 
 # Game variables
