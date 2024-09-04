@@ -1,9 +1,9 @@
 # Rhythmic-cat
 
 ## Members
-Leader/designer: Yu Wai Yin
-Coder: Sivapravin
-Presenter/thinker: Kabeer
+- Leader/designer: Yu Wai Yin
+- Coder: Sivapravin
+- Presenter/thinker: Kabeer
 
 ## How to install our game
 open **Anaconda Powershell Prompt** or **Miniconda Powershell Prompt**
