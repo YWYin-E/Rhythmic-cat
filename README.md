@@ -144,7 +144,7 @@ Install python in Visual Studio Code
 
 
 
-choose **3.12.4 ('cat':conda)** on the right below conner 
+choose **3.12.4 ('cat':conda)** on the right below corner 
 
 
 
@@ -156,7 +156,7 @@ choose **3.12.4 ('cat':conda)** on the right below conner
 
 
 
-Lastly, click run python filr button on the top right conner
+Lastly, click run python filr button on the top right corner
 
 
 
