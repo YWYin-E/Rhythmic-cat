@@ -172,14 +172,31 @@ You can play our game now!
 
 ## How to play the game?
 
-![image](https://github.com/user-attachments/assets/c82cfcab-8625-4027-9e41-e7ee147ebe17)
+![image](https://github.com/user-attachments/assets/5cd4a7f8-0f57-4b32-8c21-a83df67d1827)
+
+
+
+![image](https://github.com/user-attachments/assets/e6e0a7f1-99d6-4901-8f95-75310b5aa470)
+
+
+
 
 ### Control keys
-Our game requires only **arrow keys** and **R** on your keyboard.
+Our game requires only **arrow keys** on your keyboard.
+
+
+![image](https://github.com/user-attachments/assets/71cb1da6-bf41-46ee-945c-dc61efc7c8c4)
 
 
 
-https://github.com/user-attachments/assets/f893c737-4c37-44da-aff3-facafc72dc98
+## Video
+
+
+
+
+https://github.com/user-attachments/assets/efa7a46d-460f-40ef-be92-c1bfdd5ad7c8
+
+
 
 
 ### Game rule
