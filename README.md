@@ -18,7 +18,9 @@ right click and copy as path
 Open **Anaconda Powershell Prompt** or **Miniconda Powershell Prompt** (choose one)
 
 __To get Anaconda/Miniconda, follow this URL:__
+
 For PC that have a lot storage(use Anaconda): https://www.anaconda.com/download
+
 For Pc that have a little storage(Use Miniconda): https://docs.anaconda.com/miniconda/
 
 
