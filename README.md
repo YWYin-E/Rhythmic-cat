@@ -49,3 +49,17 @@ If they ask (y/n), just type **y** and **ENTER**
 You can play our game now!
 
 **Enjoy!!!**
+
+
+## How to play the game?
+
+![image](https://github.com/user-attachments/assets/c82cfcab-8625-4027-9e41-e7ee147ebe17)
+
+### Control key
+Our game only require **arrow key** and **R** on your keyboard
+
+
+
+https://github.com/user-attachments/assets/f893c737-4c37-44da-aff3-facafc72dc98
+
+
