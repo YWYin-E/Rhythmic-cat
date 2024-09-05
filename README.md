@@ -195,7 +195,11 @@ Our game requires only **arrow keys** on your keyboard.
 
 
 
-https://github.com/user-attachments/assets/efa7a46d-460f-40ef-be92-c1bfdd5ad7c8
+
+https://github.com/user-attachments/assets/05ddc07a-d2d9-413f-b47e-1cbe2dffff34
+
+
+
 
 
 
