@@ -1,5 +1,6 @@
 import pygame
 import random
+import json  # For loading and saving high scores
 
 # Initialize Pygame
 pygame.init()
@@ -16,6 +17,7 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
+PEACH = (255,229,180)
 GRAY = (50, 50, 50)  # Line color
 
 FONT = pygame.font.Font("gamingfont2.otf", 30)  # Main font for score and text
@@ -74,6 +76,28 @@ current_song = 0
 songs = ["Song1.mp3", "Song2.mp3", "Song3.mp3"]
 bpms = [78, 85, 87]  # Example BPMs for the songs
 
+# High scores dictionary
+high_scores = {}
+
+# High score file path
+high_score_file = 'high_scores.json'
+
+# Function to load high scores
+def load_high_scores():
+    try:
+        with open(high_score_file, 'r') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return {song: 0 for song in songs}  # Initialize with zero if file not found
+
+# Function to save high scores
+def save_high_scores():
+    with open(high_score_file, 'w') as file:
+        json.dump(high_scores, file)
+
+# Load the high scores when the game starts
+high_scores = load_high_scores()
+
 # Calculate seconds per beat for the current song
 seconds_per_beat = 60 / bpms[current_song]
 
@@ -90,7 +114,6 @@ def draw_text_centered(text, font, color, surface, rect):
     surface.blit(text_surface, text_rect)
 
 def draw_play_button():
-    # Load a play button image or design your play button
     pygame.draw.rect(screen, WHITE, play_button_rect, border_radius=12)  # White button with rounded corners
     pygame.draw.rect(screen, BLACK, play_button_rect, 4, border_radius=12)  # Black border
     draw_text_centered("Play", BUTTON_FONT, BLACK, screen, play_button_rect)  # Text on the button
@@ -107,6 +130,9 @@ def draw_songs_screen():
         rect = pygame.Rect(WIDTH // 2 - 100, 150 + i * 50, 200, 40)
         pygame.draw.rect(screen, WHITE, rect)
         draw_text_centered(song.replace(".mp3", ""), FONT, BLACK, screen, rect)
+        # Display the high score for the song
+        high_score_text = FONT.render(f"High Score: {high_scores[song]}", True, PEACH)
+        screen.blit(high_score_text, (WIDTH - 250, 150 + i * 50))  # Adjust position if necessary
         song_rects.append(rect)
     return song_rects
 
@@ -216,6 +242,11 @@ def game_loop():
 
         # Check for game over
         if misses >= max_misses:
+            # Save high score if it's the best for this song
+            if score > high_scores[songs[current_song]]:
+                high_scores[songs[current_song]] = score
+                save_high_scores()  # Save updated high scores to file
+
             game_over_text = FONT.render("Game Over! Returning to Main Menu...", True, RED)
             screen.blit(game_over_text, (WIDTH // 2 - 300, HEIGHT // 2))
             pygame.display.flip()
@@ -228,7 +259,6 @@ def game_loop():
     pygame.mixer.music.stop()  # Stop the music before returning to the main menu
 
 def draw_play_button():
-    # Load a play button image or design your play button
     pygame.draw.rect(screen, WHITE, play_button_rect, border_radius=12)  # White button with rounded corners
     pygame.draw.rect(screen, BLACK, play_button_rect, 4, border_radius=12)  # Black border
     draw_text_centered("Play", BUTTON_FONT, BLACK, screen, play_button_rect)  # Text on the button
@@ -270,3 +300,5 @@ while main_menu:
                         show_songs = False
                         game_loop()  # Start the game loop with the selected song
                         main_menu = True  # Return to the main menu after the game loop
+
+pygame.quit()
