@@ -176,7 +176,8 @@ You can play our game now!
 
 
 
-![image](https://github.com/user-attachments/assets/e6e0a7f1-99d6-4901-8f95-75310b5aa470)
+![image](https://github.com/user-attachments/assets/12d908cf-bb73-4605-bb3b-5485ac64b0ec)
+
 
 
 
