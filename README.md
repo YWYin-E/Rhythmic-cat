@@ -204,3 +204,5 @@ https://github.com/user-attachments/assets/efa7a46d-460f-40ef-be92-c1bfdd5ad7c8
 - If clicked the arrow key wrongly, it will be considered or counted as "Misses".
 - The game will be over when one "Misses" 5 times. 
 
+[Where we were inspired from](https://legiongames.itch.io/rhythm-arrows)
+
