@@ -102,7 +102,7 @@ high_scores = load_high_scores()
 seconds_per_beat = 60 / bpms[current_song]
 
 # Add the new variables
-n = 75  # Number of beats it takes for an arrow to reach the target
+n = 85  # Number of beats it takes for an arrow to reach the target
 arrow_speed = HEIGHT / (seconds_per_beat * n)  # Calculate arrow speed
 
 # Main menu buttons
