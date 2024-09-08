@@ -210,4 +210,5 @@ https://github.com/user-attachments/assets/05ddc07a-d2d9-413f-b47e-1cbe2dffff34
 - The game will be over when one "Misses" 5 times. 
 
 [Where we were inspired from](https://legiongames.itch.io/rhythm-arrows)
+credit: Soo Kang Xian (tq for your art)
 
